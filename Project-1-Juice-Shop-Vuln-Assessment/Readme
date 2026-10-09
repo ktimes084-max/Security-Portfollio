@@ -1,0 +1,43 @@
+# Vulnerability Assessment: OWASP Juice Shop
+
+## Overview
+A static container vulnerability assessment of the OWASP Juice Shop (v20.2.0) Docker image using Trivy v0.74.0. The scan identified critical security weaknesses in dependencies and hardcoded secrets.
+
+**Assessor:** Yuvan Thiruchelvam
+**Date:** September 18, 2026
+**Tool:** Trivy v0.74.0
+
+## Key Metrics
+
+| Severity | Count |
+| :--- | :--- |
+| Critical | 8 |
+| High | 45 |
+| Medium | 56 |
+| Low | 19 |
+| **Total Vulnerabilities** | **134** |
+| **Exposed Secrets** | **6** |
+
+## Top Critical Findings
+
+1. JWT Authentication Bypass (jsonwebtoken) - CVSS 9.8
+2. Command Injection (marsdb) - Critical
+3. Prototype Pollution (lodash) - CVSS 9.1
+4. Weak Cryptography (crypto-js) - CVSS 9.1
+5. Arbitrary File Read/Write (decompress) - CVSS 9.1
+6. Hardcoded RSA Private Keys in Source Code
+
+## Remediation Summary
+
+- Immediate: Update jsonwebtoken, lodash, crypto-js, and decompress. Remove marsdb.
+- Immediate: Rotate all exposed keys and remove hardcoded secrets from code and Terraform files.
+- Short-term: Implement automated CI/CD scanning and pre-commit hooks for secret detection.
+
+## Files
+
+- Vulnerability_Assessment_Report.pdf: Full detailed report.
+- trivy_scan_results.json: Raw scan output.
+
+## Author
+
+Yuvan Thiruchelvam
